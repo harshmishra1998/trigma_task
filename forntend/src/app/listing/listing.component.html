@@ -1,0 +1,92 @@
+<ngx-flip [flip]="flip">
+    <div front class="front">
+        <div class="w-100">
+            <div class="container">
+                <div class="row justify-content-lg-between my-3">
+                    <div class="col-3">
+                        <input #searching class="form-control" type="text">
+                    </div>
+                    <div class="col-2 d-flex justify-content-end">
+                        <a (click)="newadd()" class="btn btn-success py-1">Add New</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-form">
+                            <ngx-datatable #myTable class="material expandable" style="height:400px;" [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [rowHeight]="50" [scrollbarV]="true" [rows]="vehiclelist">
+                                <!-- Row Detail Template -->
+                                <!-- Column Templates -->
+                                <ngx-datatable-column name="year" [width]="80">
+                                    <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                                        <strong>{{ row.year }}</strong>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="make" [width]="80">
+                                    <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                                        <strong>{{ row.make }}</strong>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="model" [width]="80">
+                                    <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                                        <strong>{{ row.model }}</strong>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                                <ngx-datatable-column name="Action" [width]="80">
+                                    <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+                                        <a (click)="edititem(row)" class="edit btn btn-success py-1 mr-3">Edit</a>
+                                        <a (click)="deleteitem(row)" class="delete btn btn-danger py-1">Delete</a>
+                                    </ng-template>
+                                </ngx-datatable-column>
+                            </ngx-datatable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div back class="back">
+        <div class="w-100">
+            <div class="container">
+                <div class="row">
+                    <h2>Form</h2>
+                    <form class="w-100" [formGroup]="forminfo" (ngSubmit)="onSubmitData()">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Year</label>
+                                    <input type="number" class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': sub && f.year.errors }">
+                                    <div *ngIf="sub && f.year.errors" class="invalid-feedback">
+                                        <div *ngIf="f.year.errors.required">Year is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Make</label>
+                                    <input type="text" class="form-control" formControlName="make" [ngClass]="{ 'is-invalid': sub && f.make.errors }">
+                                    <div *ngIf="sub && f.make.errors" class="invalid-feedback">
+                                        <div *ngIf="f.make.errors.required">Make is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Model</label>
+                                    <input type="text" class="form-control" formControlName="model" [ngClass]="{ 'is-invalid': sub && f.model.errors }">
+                                    <div *ngIf="sub && f.model.errors" class="invalid-feedback">
+                                        <div *ngIf="f.model.errors.required">Model is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-success mr-3">Submit</button>
+                                <button (click)="manageForm()" class="btn btn-danger">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ngx-flip>
+<br>

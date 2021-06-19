@@ -1,0 +1,19 @@
+ngx-flip {
+    width: 100%;
+}
+
+.front {
+    background-color: lightgreen;
+    width: 100%;
+    padding: 40px 0px;
+}
+
+.back {
+    background-color: lightblue;
+    height: 100%;
+    padding: 40px 0px;
+}
+
+h2 {
+    color: #fff;
+}
